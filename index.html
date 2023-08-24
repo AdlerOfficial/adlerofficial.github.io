@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Визитка</title>
-    </head>
-    <body>
-        <h1>Hello World</h1>
-        <p>I'm hosted with GitHub Pages.</p>
-    </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>День Рождения!</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+  }
+  .container {
+    padding: 100px;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff6f61;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Приглашаем на День Рождения!</h1>
+  <p>Дорогие друзья! Приглашаем вас на празднование моего дня рождения.</p>
+  <p>Дата: 15 сентября<br>Время: 18:00<br>Место: Ресторан "Счастливые моменты"</p>
+  <button id="rsvpButton">Подтвердить участие</button>
+  <p id="responseText"></p>
+</div>
+<script>
+  const rsvpButton = document.getElementById('rsvpButton');
+  const responseText = document.getElementById('responseText');
+  
+  rsvpButton.addEventListener('click', () => {
+    responseText.textContent = "Спасибо за подтверждение! Ждем вас на вечеринке!";
+  });
+</script>
+</body>
 </html>
