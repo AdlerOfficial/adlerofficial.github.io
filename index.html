@@ -3,57 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>День Рождения!</title>
+<title>Приглашение на мероприятие</title>
 <style>
+  /* Ваши стили */
   body {
+    font-family: 'Caveat', cursive;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background: url('background.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    text-align: center;
-  }
-  .container {
-    padding: 100px;
-    animation: fade-in 1s ease-in-out;
-  }
-  h1 {
-    font-size: 3rem;
-    animation: bounce-up 1s ease-in-out;
-  }
-  p {
-    font-size: 1.5rem;
-    animation: slide-in 1s ease-in-out;
-  }
-  button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #ff6f61;
-    border: none;
-    color: white;
-    cursor: pointer;
-    animation: scale-in 1s ease-in-out;
-  }
-  input[type="text"] {
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s ease-in-out;
-    width: 100%;
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
 
-  input[type="text"]:focus {
-    border-color: #ff6f61;
+  .container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background: linear-gradient(135deg, #a351aa, #c75d61);
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    animation: fade-in 1s ease-in-out;
+    color: #ff6f61;
   }
-  #responseText {
-    font-size: 1.2rem;
-    animation: slide-in 1s ease-in-out;
+
+  #invitationText {
+    color: #ff6f61;
+    font-size: 28px;
+    margin: 10px 0;
   }
-  
+
+  #responseText, #confirmationMessage {
+    margin-top: 20px;
+    color: #ff6f61;
+    font-weight: bold;
+    animation: fade-in 1s ease-in-out;
+    font-size: 18px;
+  }
+
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -62,17 +54,10 @@
       opacity: 1;
     }
   }
-  @keyframes bounce-up {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
+
   @keyframes slide-in {
     from {
-      transform: translateY(100px);
+      transform: translateY(-10%);
       opacity: 0;
     }
     to {
@@ -80,69 +65,84 @@
       opacity: 1;
     }
   }
-  @keyframes scale-in {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
-    }
+
+  input[type="text"] {
+    padding: 10px;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+    width: 100%;
+    margin: 10px auto;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+  }
+
+  input[type="text"]::placeholder {
+    color: #ff6f61;
+  }
+
+  input[type="text"]:focus {
+    border-color: #ff6f61;
+  }
+
+  button {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    background-color: #ff6f61;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    animation: scale-in 1s ease-in-out;
+    font-family: 'Caveat', cursive;
   }
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat">
 </head>
 <body>
 <div class="container">
-  <h1>Приглашаем на День Рождения!</h1>
-  <p>Дорогие друзья! Приглашаем вас на празднование моего дня рождения.</p>
-  <p>Дата: 15 сентября<br>Время: 18:00<br>Место: Ресторан "Счастливые моменты"</p>
-  <button id="rsvpButton">Принять участие</button>
-<p id="responseText"></p>
-<div id="confirmationMessage" class="hidden">Вы приняли участие в мероприятии!</div>
-<div id="nameInput" class="hidden">
-  <input type="text" id="fullName" placeholder="Введите ваше ФИО" maxlength="50">
-  <button id="confirmNameButton">Подтвердить</button>
-</div>
+  <div id="invitationText">
+    <h1>Приглашаем на День Рождения!</h1>
+    <p>Дорогие друзья! Приглашаем вас на празднование нашего дня рождения.</p>
+    <p>Дата: 6 сентября<br>Время: 13:00<br>Место: Лазарева</p>
+  </div>
+  <p id="responseText"></p>
+  <div id="nameInput" class="hidden">
+    <input type="text" id="fullName" placeholder="Введите ваше ФИО" maxlength="50">
+    <button id="confirmNameButton">Подтвердить участие</button>
+  </div>
 </div>
 <script>
-    const rsvpButton = document.getElementById('rsvpButton');
-    const responseText = document.getElementById('responseText');
-    const confirmationMessage = document.getElementById('confirmationMessage');
-    const nameInput = document.getElementById('nameInput');
-    const fullNameInput = document.getElementById('fullName');
-    const confirmNameButton = document.getElementById('confirmNameButton');
-    
-    const hasRSVPed = localStorage.getItem('rsvped');
-    
-    if (hasRSVPed) {
-      responseText.textContent = "Вы уже подтвердили участие.";
-      nameInput.style.display = "none";
-      rsvpButton.style.display = "none"; // Скрываем кнопку
-      confirmationMessage.classList.remove('hidden');
-      confirmationMessage.style.animation = "fade-in 1s ease-in-out";
-    }
-    
-    rsvpButton.addEventListener('click', () => {
-      nameInput.classList.remove('hidden');
-      nameInput.style.animation = "fade-in 1s ease-in-out";
-      rsvpButton.style.display = "none"; // Скрываем кнопку
-    });
+  const responseText = document.getElementById('responseText');
+  const nameInput = document.getElementById('nameInput');
+  const fullNameInput = document.getElementById('fullName');
+  const confirmNameButton = document.getElementById('confirmNameButton');
   
+  const hasRSVPed = localStorage.getItem('rsvped');
+  
+  if (hasRSVPed) {
+    responseText.textContent = "Спасибо за подтверждение! Ждем вас на вечеринке!";
+    nameInput.style.display = "none";
+  } else {
+    nameInput.classList.remove('hidden');
+    nameInput.style.animation = "fade-in 1s ease-in-out";
+
     confirmNameButton.addEventListener('click', () => {
       const fullName = fullNameInput.value.trim();
       const nameWords = fullName.split(' ');
-      
+
       if (nameWords.length === 3) {
-        responseText.textContent = `Спасибо, ${fullName}! Ждем вас на вечеринке!`;
+        responseText.textContent = "Спасибо за подтверждение! Ждем вас на вечеринке!";
         responseText.style.animation = "slide-in 1s ease-in-out";
-        confirmationMessage.classList.remove('hidden');
-        confirmationMessage.style.animation = "fade-in 1s ease-in-out";
         localStorage.setItem('rsvped', 'true');
         nameInput.style.display = "none";
-        rsvpButton.style.display = "none"; // Скрываем кнопку
       } else {
         alert("Пожалуйста, введите ваше ФИО, состоящее из 3 слов.");
       }
     });
-  </script>
+  }
+</script>
 </body>
 </html>
